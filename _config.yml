@@ -1,0 +1,89 @@
+title: "V.I.P.LLC"
+email: "hello@vip-llc.example"
+description: "V.I.P.LLC — Art gallery and apparel store. Curated art and premium apparel."
+# For a project site on GitHub Pages set `baseurl` to the repository name.
+# Change or remove if you will serve from a custom domain.
+baseurl: "/V.I.P.LLC"
+url: "https://rappinmic.github.io" # the base hostname & protocol for your site
+
+# Use null because this repo uses custom layouts/styles (not a gem theme).
+theme: null
+
+# Jekyll build/permalink settings
+permalink: /:title/
+paginate: 6
+paginate_path: "/page:num/"
+
+# Collections for structured content (outputs static pages)
+collections:
+  artworks:
+    output: true
+    permalink: /artworks/:title/
+  products:
+    output: true
+    permalink: /products/:title/
+
+# Plugins (make sure they are in your Gemfile / allowed by GitHub Pages)
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Markdown / kramdown settings
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+  syntax_highlighter_opts:
+    inline_theme: null
+
+# Exclude from the site build
+exclude:
+  - "node_modules"
+  - "vendor"
+  - "Gemfile"
+  - "Gemfile.lock"
+  - ".gitignore"
+  - "README.md"
+  - ".github"
+  - ".env"
+  - ".sass-cache"
+
+# Defaults for pages/posts
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
+
+# Navigation / site data (can be referenced from templates)
+nav_links:
+  - title: "Home"
+    url: "/"
+  - title: "Gallery"
+    url: "/gallery.html"
+  - title: "Store"
+    url: "/store.html"
+  - title: "About"
+    url: "/about.html"
+social:
+  twitter: ""
+  instagram: ""
+  facebook: ""
+
+# Optional integrations (uncomment and set values if you use them)
+# disqus:
+#   shortname: "your-disqus-shortname"
+# google_analytics: "UA-XXXXXXXXX-X"
+
+# Build settings
+safe: true
+future: true
+lsi: false
+incremental: false
