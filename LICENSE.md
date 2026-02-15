@@ -1,4 +1,4 @@
-Copyright © 2026 [Your Name or Brand]. All rights reserved.
+Copyright © 2026 Visions In Paint LLC. All rights reserved.
 
 Permission is granted to view and clone this repository for personal, non-commercial purposes only.
 
