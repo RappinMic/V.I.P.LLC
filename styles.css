@@ -8,6 +8,7 @@
     --picasso-cream: #F5F0E8;
     --picasso-charcoal: #3D3D3D;
     --picasso-terracotta: #C77B5C;
+    --picasso-terracotta-dark: #a85c43;
     --picasso-gold: #D4AF37;
 }
 
@@ -615,7 +616,7 @@ nav a:hover {
 }
 
 .remove-item:hover {
-    background-color: #a85c43;
+    background-color: var(--picasso-terracotta-dark);
     transform: scale(1.05);
 }
 

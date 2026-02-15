@@ -7,7 +7,7 @@ class ShoppingCart {
 
     init() {
         // Load cart from localStorage
-        const savedCart = localStorage.getItem('vip-cart');
+        const savedCart = localStorage.getItem('vip-art-gallery-cart');
         if (savedCart) {
             this.items = JSON.parse(savedCart);
             this.updateCartUI();
@@ -93,7 +93,7 @@ class ShoppingCart {
     }
 
     saveCart() {
-        localStorage.setItem('vip-cart', JSON.stringify(this.items));
+        localStorage.setItem('vip-art-gallery-cart', JSON.stringify(this.items));
     }
 
     updateCartUI() {
