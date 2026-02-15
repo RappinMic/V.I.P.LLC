@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- assets/images/logo-mono.svg
+     Monochrome white variant for dark backgrounds.
+     Save as: assets/images/logo-mono.svg
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" role="img" aria-labelledby="monoTitle monoDesc">
+  <title id="monoTitle">Visions In Paint LLC logo - monochrome</title>
+  <desc id="monoDesc">Monochrome white variant of the logo for dark headers.</desc>
+
+  <g fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round">
+    <!-- simplified palette outline -->
+    <ellipse cx="870" cy="160" rx="247" ry="152" fill="none" stroke-width="3"/>
+    <ellipse cx="1010" cy="220" rx="40" ry="56" fill="none" stroke-width="3"/>
+  </g>
+
+  <!-- canvas outline -->
+  <rect x="220" y="120" width="560" height="360" rx="10" ry="10" fill="none" stroke="#ffffff" stroke-width="4"/>
+
+  <!-- eye -->
+  <g transform="translate(500,300) scale(0.75)">
+    <path d="M-200 40 C-120 -30 120 -30 200 40" fill="none" stroke="#ffffff" stroke-width="12"/>
+    <path d="M200 40 C120 110 -120 110 -200 40" fill="none" stroke="#ffffff" stroke-width="4"/>
+    <circle cx="0" cy="40" r="50" fill="none" stroke="#ffffff" stroke-width="6"/>
+    <circle cx="0" cy="40" r="20" fill="#ffffff"/>
+    <circle cx="14" cy="30" r="6" fill="#ffffff" opacity="0.95"/>
+  </g>
+
+  <!-- brushes -->
+  <g transform="translate(420,420)" fill="#ffffff">
+    <g transform="rotate(-25)"><rect x="-10" y="-8" width="300" height="16" rx="8" ry="8"/></g>
+    <g transform="rotate(25)"><rect x="-10" y="-8" width="300" height="16" rx="8" ry="8"/></g>
+  </g>
+
+  <rect x="0" y="0" width="1200" height="600" fill="none"/>
+</svg>
