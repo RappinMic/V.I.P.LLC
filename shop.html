@@ -1,0 +1,561 @@
+<!doctype html>
+<!--
+  shop.html
+  Simple, responsive shop page for "V.I.P.LLC"
+  - Pure HTML/CSS/JS (no build step)
+  - Demo products included as JSON in the script
+  - Cart persists in localStorage; checkout simulated
+  - Accessible, mobile-friendly layout
+  Customize: replace product data, currency, images, and integrate with your backend/payment provider.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Shop — V.I.P.LLC</title>
+  <meta name="description" content="V.I.P.LLC — Official Shop" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --brand:#0f172a;
+      --accent:#eab308;
+      --muted:#64748b;
+      --card:#ffffff;
+      --glass: rgba(255,255,255,0.06);
+      --max-width:1100px;
+      --radius:12px;
+      --shadow: 0 6px 18px rgba(2,6,23,0.12);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+      background:linear-gradient(180deg,#071129 0%, #031021 100%);
+      color:#e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:28px 18px;
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+    }
+
+    .container{
+      width:100%;
+      max-width:var(--max-width);
+    }
+
+    /* Header */
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:20px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .logo{
+      width:52px;
+      height:52px;
+      background:linear-gradient(135deg,var(--accent),#fb923c);
+      border-radius:10px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--brand);
+      font-weight:700;
+      box-shadow:var(--shadow);
+    }
+    .brand h1{
+      margin:0;
+      font-size:18px;
+      line-height:1;
+    }
+    .brand p{margin:0;font-size:12px;color:var(--muted)}
+
+    /* Controls */
+    .controls{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .search, .select, .cart-btn{
+      background:var(--glass);
+      border:1px solid rgba(255,255,255,0.06);
+      color:inherit;
+      padding:8px 12px;
+      border-radius:10px;
+      backdrop-filter: blur(4px);
+    }
+    .search input{
+      background:transparent;border:0;color:inherit;outline:none;width:200px;
+    }
+    .cart-btn{
+      display:inline-flex;align-items:center;gap:8px;cursor:pointer;
+    }
+
+    /* Main */
+    main{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:var(--radius);
+      padding:18px;
+      box-shadow:var(--shadow);
+      border:1px solid rgba(255,255,255,0.03);
+    }
+
+    .toolbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:14px;
+      flex-wrap:wrap;
+    }
+    .filters{
+      display:flex;gap:8px;align-items:center;flex-wrap:wrap;
+    }
+    .select select{background:transparent;border:0;color:inherit;outline:none}
+
+    /* Products grid */
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+      gap:14px;
+    }
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      padding:12px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.03);
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+    .img{
+      height:140px;
+      border-radius:8px;
+      background-size:cover;
+      background-position:center;
+      display:block;
+      box-shadow: inset 0 0 40px rgba(0,0,0,0.25);
+    }
+    .title{font-weight:600;margin:0}
+    .desc{color:var(--muted);font-size:13px;margin:0}
+    .price{margin-top:auto;font-weight:700}
+    .card-footer{display:flex;justify-content:space-between;align-items:center;gap:8px}
+    button.add{
+      background:var(--accent);
+      color:var(--brand);
+      border:0;padding:8px 10px;border-radius:8px;cursor:pointer;font-weight:600;
+    }
+    button.add:active{transform:translateY(1px)}
+
+    /* Cart drawer */
+    .cart-drawer{
+      position:fixed;
+      right:18px;
+      top:18px;
+      width:340px;
+      max-width:calc(100% - 36px);
+      background:linear-gradient(180deg,#071129, #031021);
+      border-radius:12px;
+      box-shadow:var(--shadow);
+      border:1px solid rgba(255,255,255,0.04);
+      overflow:hidden;
+      transform:translateY(-10px) scale(0.98);
+      opacity:0;
+      transition:all .18s ease;
+      z-index:60;
+    }
+    .cart-drawer.open{transform:none;opacity:1}
+    .cart-header{display:flex;align-items:center;justify-content:space-between;padding:12px;border-bottom:1px solid rgba(255,255,255,0.03)}
+    .cart-items{max-height:50vh;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:10px}
+    .cart-item{display:flex;gap:10px;align-items:center}
+    .cart-item .thumb{width:56px;height:56px;border-radius:8px;background-size:cover;background-position:center}
+    .cart-item .meta{flex:1}
+    .qty-control{display:inline-flex;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,0.04)}
+    .qty-control button{background:transparent;border:0;color:inherit;padding:6px 8px;cursor:pointer}
+    .cart-footer{padding:12px;border-top:1px solid rgba(255,255,255,0.03);display:flex;flex-direction:column;gap:8px}
+    .checkout{
+      background:linear-gradient(90deg,var(--accent),#fb923c);
+      color:var(--brand);border:0;padding:10px;border-radius:10px;font-weight:700;cursor:pointer;
+    }
+
+    /* Empty state */
+    .empty{padding:36px;text-align:center;color:var(--muted)}
+
+    /* Responsive */
+    @media (max-width:640px){
+      .search input{width:120px}
+      .logo{width:44px;height:44px}
+      .brand h1{font-size:16px}
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand" aria-hidden="false">
+        <div class="logo" aria-hidden="true">VIP</div>
+        <div>
+          <h1>V.I.P.LLC</h1>
+          <p>Official Shop</p>
+        </div>
+      </div>
+
+      <div class="controls" role="region" aria-label="Shop controls">
+        <div class="search" role="search" aria-label="Search products">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="vertical-align:middle;margin-right:8px">
+            <path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          <input id="search" placeholder="Search products..." aria-label="Search products"/>
+        </div>
+
+        <div class="select">
+          <label for="category" class="sr-only" style="position:absolute;left:-9999px">Category</label>
+          <select id="category" aria-label="Filter by category">
+            <option value="">All</option>
+            <option value="clothing">Clothing</option>
+            <option value="accessory">Accessory</option>
+            <option value="digital">Digital</option>
+          </select>
+        </div>
+
+        <div class="select">
+          <label for="sort" class="sr-only" style="position:absolute;left:-9999px">Sort</label>
+          <select id="sort" aria-label="Sort products">
+            <option value="featured">Featured</option>
+            <option value="price-asc">Price: Low → High</option>
+            <option value="price-desc">Price: High → Low</option>
+            <option value="name-asc">Name: A → Z</option>
+          </select>
+        </div>
+
+        <button class="cart-btn" id="open-cart" aria-expanded="false" aria-controls="cart-drawer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="vertical-align:middle">
+            <path d="M6 6h15l-1.5 9h-12L4 3H2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="10" cy="20" r="1.6" fill="currentColor"/>
+            <circle cx="18" cy="20" r="1.6" fill="currentColor"/>
+          </svg>
+          <span id="cart-count">0</span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <div class="toolbar" role="toolbar">
+        <div>
+          <strong id="results-count">0</strong> products
+          <span style="color:var(--muted);margin-left:8px;font-size:13px">— Curated by V.I.P.LLC</span>
+        </div>
+        <div style="color:var(--muted);font-size:13px">Secure checkout available via your backend</div>
+      </div>
+
+      <section>
+        <div class="grid" id="products" aria-live="polite">
+          <!-- Product cards injected by JS -->
+        </div>
+        <div id="no-results" class="empty" hidden>
+          No products found matching your search.
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Cart drawer -->
+  <aside id="cart-drawer" class="cart-drawer" role="region" aria-label="Shopping cart">
+    <div class="cart-header">
+      <div><strong>Your Cart</strong></div>
+      <div>
+        <button id="close-cart" aria-label="Close cart" style="background:transparent;border:0;color:var(--muted);cursor:pointer">✕</button>
+      </div>
+    </div>
+
+    <div class="cart-items" id="cart-items">
+      <!-- items -->
+    </div>
+
+    <div class="cart-footer">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div style="color:var(--muted)">Subtotal</div>
+        <div id="cart-subtotal" style="font-weight:800">$0.00</div>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button class="checkout" id="checkout">Checkout</button>
+        <button id="clear-cart" style="background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 12px;border-radius:8px;color:var(--muted);cursor:pointer">Clear</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Checkout modal (simulated) -->
+  <div id="modal" role="dialog" aria-modal="true" hidden style="position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:90">
+    <div style="background:linear-gradient(180deg,#0b1320,#071129);padding:20px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);width:92%;max-width:480px;box-shadow:var(--shadow)">
+      <h3 style="margin-top:0">Checkout</h3>
+      <p style="color:var(--muted)">This demo simulates checkout. Replace with your real payment backend integration (Stripe, PayPal, etc.).</p>
+      <div style="display:flex;gap:8px;margin-top:12px">
+        <input id="email" type="email" placeholder="Email address" style="flex:1;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit"/>
+        <button id="place-order" style="background:var(--accent);border:0;padding:10px 12px;border-radius:8px;font-weight:700;color:var(--brand);cursor:pointer">Place Order</button>
+      </div>
+      <div style="text-align:right;margin-top:8px">
+        <button id="close-modal" style="background:transparent;border:0;color:var(--muted);cursor:pointer">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Demo product data (replace with your data or fetch from an API)
+    const PRODUCTS = [
+      { id: "vip-tee-1", name: "V.I.P. Tee — Midnight", price: 28.00, category: "clothing", description: "Premium cotton tee with embroidered logo.", image: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=1" },
+      { id: "vip-hat-1", name: "V.I.P. Cap — Gold", price: 22.00, category: "accessory", description: "Structured cap with adjustable strap.", image: "https://images.unsplash.com/photo-1585386959984-a4155226d196?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=2" },
+      { id: "vip-scarf-1", name: "Luxury Scarf", price: 54.00, category: "accessory", description: "Soft woven scarf with subtle branding.", image: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=3" },
+      { id: "vip-ebook-1", name: "V.I.P. Style Guide (eBook)", price: 9.99, category: "digital", description: "A short guide to styling and branding.", image: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=4" },
+      { id: "vip-hoodie-1", name: "V.I.P. Hoodie — Black", price: 65.00, category: "clothing", description: "Cozy midweight hoodie with logo patch.", image: "https://images.unsplash.com/photo-1606813903384-1b9d3a2208ad?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=5" }
+    ];
+
+    // Utilities
+    const $ = sel => document.querySelector(sel);
+    const format = n => "$" + n.toFixed(2);
+
+    // App state & localStorage
+    const CART_KEY = "vipllc_cart_v1";
+    let cart = JSON.parse(localStorage.getItem(CART_KEY) || "{}");
+
+    // Elements
+    const productsEl = $("#products");
+    const resultsCount = $("#results-count");
+    const searchInput = $("#search");
+    const categorySelect = $("#category");
+    const sortSelect = $("#sort");
+    const cartCount = $("#cart-count");
+    const cartDrawer = $("#cart-drawer");
+    const openCartBtn = $("#open-cart");
+    const closeCartBtn = $("#close-cart");
+    const cartItemsEl = $("#cart-items");
+    const cartSubtotalEl = $("#cart-subtotal");
+    const noResults = $("#no-results");
+    const modal = $("#modal");
+    const checkoutBtn = $("#checkout");
+    const clearCartBtn = $("#clear-cart");
+    const placeOrderBtn = $("#place-order");
+    const closeModalBtn = $("#close-modal");
+
+    // Render product cards based on filters/search
+    function renderProducts(){
+      const q = searchInput.value.trim().toLowerCase();
+      const cat = categorySelect.value;
+      const sort = sortSelect.value;
+
+      let items = PRODUCTS.filter(p=>{
+        if(cat && p.category !== cat) return false;
+        if(q && !(p.name.toLowerCase().includes(q) || p.description.toLowerCase().includes(q))) return false;
+        return true;
+      });
+
+      if(sort === "price-asc") items.sort((a,b)=>a.price-b.price);
+      if(sort === "price-desc") items.sort((a,b)=>b.price-a.price);
+      if(sort === "name-asc") items.sort((a,b)=>a.name.localeCompare(b.name));
+      // featured: default order
+
+      productsEl.innerHTML = "";
+      if(items.length === 0){
+        noResults.hidden = false;
+      } else {
+        noResults.hidden = true;
+      }
+
+      items.forEach(p=>{
+        const card = document.createElement("article");
+        card.className = "card";
+        card.innerHTML = `
+          <div class="img" style="background-image:url('${p.image}')" role="img" aria-label="${p.name} image"></div>
+          <h3 class="title">${p.name}</h3>
+          <p class="desc">${p.description}</p>
+          <div class="card-footer">
+            <div>
+              <div style="color:var(--muted);font-size:13px;text-transform:uppercase">${p.category}</div>
+              <div class="price">${format(p.price)}</div>
+            </div>
+            <div>
+              <button class="add" data-id="${p.id}">Add</button>
+            </div>
+          </div>
+        `;
+        productsEl.appendChild(card);
+      });
+
+      resultsCount.textContent = items.length;
+      // wire add buttons
+      document.querySelectorAll("button.add").forEach(b=>b.addEventListener("click", ()=>{
+        addToCart(b.dataset.id, 1);
+      }));
+    }
+
+    // Cart functions
+    function saveCart(){
+      localStorage.setItem(CART_KEY, JSON.stringify(cart));
+      updateCartUI();
+    }
+
+    function addToCart(id, qty=1){
+      const p = PRODUCTS.find(x=>x.id===id);
+      if(!p) return;
+      cart[id] = cart[id] || { ...p, qty:0 };
+      cart[id].qty += qty;
+      saveCart();
+      openCart(); // show feedback
+    }
+
+    function removeFromCart(id){
+      delete cart[id];
+      saveCart();
+    }
+
+    function changeQty(id, qty){
+      if(qty <= 0) removeFromCart(id);
+      else cart[id].qty = qty;
+      saveCart();
+    }
+
+    function clearCart(){
+      cart = {};
+      saveCart();
+    }
+
+    function cartItemsArray(){
+      return Object.values(cart);
+    }
+
+    function cartSubtotal(){
+      return cartItemsArray().reduce((s,i)=>s + i.price * i.qty, 0);
+    }
+
+    // UI updates
+    function updateCartUI(){
+      const items = cartItemsArray();
+      cartCount.textContent = items.reduce((s,i)=>s + i.qty, 0);
+      cartSubtotalEl.textContent = format(cartSubtotal());
+
+      cartItemsEl.innerHTML = "";
+      if(items.length === 0){
+        cartItemsEl.innerHTML = '<div class="empty">Your cart is empty.</div>';
+      } else {
+        items.forEach(item=>{
+          const el = document.createElement("div");
+          el.className = "cart-item";
+          el.innerHTML = `
+            <div class="thumb" style="background-image:url('${item.image}')"></div>
+            <div class="meta">
+              <div style="font-weight:700">${item.name}</div>
+              <div style="color:var(--muted);font-size:13px">${format(item.price)} × ${item.qty} = <strong>${format(item.price * item.qty)}</strong></div>
+              <div style="margin-top:6px">
+                <div class="qty-control" data-id="${item.id}">
+                  <button data-action="dec">−</button>
+                  <div style="padding:6px 8px;background:rgba(255,255,255,0.02)">${item.qty}</div>
+                  <button data-action="inc">+</button>
+                </div>
+                <button data-action="remove" style="background:transparent;border:0;color:var(--muted);margin-left:8px;cursor:pointer">Remove</button>
+              </div>
+            </div>
+          `;
+          cartItemsEl.appendChild(el);
+        });
+      }
+      // wire cart item buttons
+      cartItemsEl.querySelectorAll(".qty-control").forEach(ctrl=>{
+        const id = ctrl.dataset.id;
+        ctrl.querySelector("[data-action=dec]").onclick = ()=>changeQty(id, Math.max(0, (cart[id]?.qty||0)-1));
+        ctrl.querySelector("[data-action=inc]").onclick = ()=>changeQty(id, (cart[id]?.qty||0)+1);
+        ctrl.parentElement.querySelector("[data-action=remove]")?.addEventListener("click", ()=>removeFromCart(id));
+      });
+    }
+
+    // Cart drawer toggles
+    function openCart(){
+      cartDrawer.classList.add("open");
+      openCartBtn.setAttribute("aria-expanded","true");
+    }
+    function closeCart(){
+      cartDrawer.classList.remove("open");
+      openCartBtn.setAttribute("aria-expanded","false");
+    }
+
+    // Checkout (simulated)
+    function showCheckout(){
+      modal.hidden = false;
+      modal.querySelector("#email").focus();
+    }
+    function hideCheckout(){
+      modal.hidden = true;
+    }
+
+    // Place order (demo)
+    async function placeOrder(){
+      const email = $("#email").value.trim();
+      if(!email || !email.includes("@")) {
+        alert("Please enter a valid email address.");
+        return;
+      }
+      // Simulate server process
+      placeOrderBtn.disabled = true;
+      placeOrderBtn.textContent = "Processing...";
+      await new Promise(r=>setTimeout(r, 1200));
+      alert("Order placed! A confirmation email will be sent to " + email + ". (Demo)");
+      placeOrderBtn.disabled = false;
+      placeOrderBtn.textContent = "Place Order";
+      hideCheckout();
+      clearCart();
+    }
+
+    // init
+    function init(){
+      renderProducts();
+      updateCartUI();
+
+      // events
+      searchInput.addEventListener("input", () => renderProducts());
+      categorySelect.addEventListener("change", () => renderProducts());
+      sortSelect.addEventListener("change", () => renderProducts());
+      openCartBtn.addEventListener("click", ()=> openCart());
+      closeCartBtn.addEventListener("click", ()=> closeCart());
+      clearCartBtn.addEventListener("click", ()=> {
+        if(confirm("Clear cart?")) clearCart();
+      });
+
+      checkoutBtn.addEventListener("click", ()=>{
+        if(cartItemsArray().length === 0){ alert("Your cart is empty."); return; }
+        showCheckout();
+      });
+
+      closeModalBtn.addEventListener("click", hideCheckout);
+      modal.addEventListener("click", (e)=>{ if(e.target === modal) hideCheckout(); });
+      placeOrderBtn.addEventListener("click", placeOrder);
+
+      // Keyboard shortcut: "c" opens cart
+      document.addEventListener("keydown", (e)=>{
+        if(e.key === "c" && !e.metaKey && !e.ctrlKey && !e.altKey){
+          openCart();
+        }
+      });
+
+      // Close drawer when clicking outside (mobile)
+      document.addEventListener("click", (e)=>{
+        if(!cartDrawer.contains(e.target) && !openCartBtn.contains(e.target) && cartDrawer.classList.contains("open")){
+          // allow clicks inside to proceed
+          closeCart();
+        }
+      });
+    }
+
+    // Run
+    init();
+  </script>
+</body>
+</html>
