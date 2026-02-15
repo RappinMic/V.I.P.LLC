@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V.I.P.LLC - Art Gallery & Apparel Store</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">V.I.P.LLC</div>
+                <ul class="nav-menu">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#gallery" class="nav-link">Art Gallery</a></li>
+                    <li><a href="#store" class="nav-link">Apparel Store</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                </ul>
+                <div class="cart-icon" onclick="toggleCart()">
+                    🛒 <span id="cart-count">0</span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Welcome to V.I.P.LLC</h1>
+            <p>Where Art Meets Fashion</p>
+            <a href="#gallery" class="btn">Explore Gallery</a>
+            <a href="#store" class="btn btn-secondary">Shop Apparel</a>
+        </div>
+    </section>
+
+    <!-- Art Gallery Section -->
+    <section id="gallery" class="gallery-section">
+        <div class="container">
+            <h2>Art Gallery</h2>
+            <p class="section-description">Discover our curated collection of contemporary art</p>
+            <div class="gallery-grid" id="gallery-grid">
+                <!-- Gallery items will be dynamically loaded -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Apparel Store Section -->
+    <section id="store" class="store-section">
+        <div class="container">
+            <h2>Apparel Store</h2>
+            <p class="section-description">Premium quality apparel for art enthusiasts</p>
+            <div class="filter-bar">
+                <button class="filter-btn active" data-category="all">All</button>
+                <button class="filter-btn" data-category="tshirts">T-Shirts</button>
+                <button class="filter-btn" data-category="hoodies">Hoodies</button>
+                <button class="filter-btn" data-category="accessories">Accessories</button>
+            </div>
+            <div class="products-grid" id="products-grid">
+                <!-- Products will be dynamically loaded -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2>About V.I.P.LLC</h2>
+            <p>V.I.P.LLC is a unique fusion of art gallery and apparel store, bringing together the worlds of contemporary art and fashion. We curate exclusive artwork and design premium apparel that celebrates creativity and self-expression.</p>
+            <div class="features">
+                <div class="feature">
+                    <h3>🎨 Curated Art</h3>
+                    <p>Handpicked contemporary pieces from emerging artists</p>
+                </div>
+                <div class="feature">
+                    <h3>👕 Premium Apparel</h3>
+                    <p>High-quality clothing designed for comfort and style</p>
+                </div>
+                <div class="feature">
+                    <h3>🚚 Fast Shipping</h3>
+                    <p>Quick and reliable delivery worldwide</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shopping Cart Modal -->
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Shopping Cart</h2>
+                <span class="close" onclick="toggleCart()">&times;</span>
+            </div>
+            <div id="cart-items" class="cart-items">
+                <!-- Cart items will be dynamically loaded -->
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <strong>Total: $<span id="cart-total">0.00</span></strong>
+                </div>
+                <button class="btn" onclick="checkout()">Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 V.I.P.LLC. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
