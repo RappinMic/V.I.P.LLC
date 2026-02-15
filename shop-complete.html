@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- assets/images/logo.svg
+     Vector recreation of the "Visions In Paint LLC" logo.
+     Scales crisply for large headers, printing, and retina displays.
+     Save as: assets/images/logo.svg
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" width="1200" height="700" role="img" aria-labelledby="title desc">
+  <title id="title">Visions In Paint LLC logo</title>
+  <desc id="desc">An eye painted on a canvas in front of a colorful artist palette with two crossed paintbrushes and a purple paint pot; text "Visions In Paint LLC" below.</desc>
+
+  <!-- Palette (behind canvas, right side) -->
+  <g id="palette" transform="translate(720,90) scale(0.9)">
+    <ellipse cx="150" cy="170" rx="210" ry="130" fill="#f3f6ef" stroke="#e6e8df" stroke-width="4"/>
+    <!-- paint wells -->
+    <circle cx="45" cy="60" r="24" fill="#2563eb"/> <!-- blue -->
+    <circle cx="120" cy="48" r="24" fill="#2dd4bf"/> <!-- teal -->
+    <circle cx="195" cy="52" r="24" fill="#22c55e"/> <!-- green -->
+    <circle cx="270" cy="72" r="24" fill="#facc15"/> <!-- yellow -->
+    <circle cx="240" cy="130" r="24" fill="#fb923c"/> <!-- orange -->
+    <circle cx="180" cy="150" r="24" fill="#ef4444"/> <!-- red -->
+    <!-- thumb hole -->
+    <ellipse cx="320" cy="170" rx="44" ry="62" fill="#f3f6ef" stroke="#e6e8df" stroke-width="4"/>
+  </g>
+
+  <!-- Canvas (center) -->
+  <g id="canvas" transform="translate(140,130)">
+    <rect x="0" y="0" width="560" height="360" rx="6" ry="6" fill="#ffffff" stroke="#e9ecef" stroke-width="4" />
+    <!-- subtle inner shadow -->
+    <rect x="0" y="0" width="560" height="360" rx="6" ry="6" fill="none" stroke="rgba(0,0,0,0.02)" stroke-width="1"/>
+  </g>
+
+  <!-- Eye (on canvas) -->
+  <g id="eye" transform="translate(235,210) scale(0.85)">
+    <!-- outer eyelid -->
+    <path d="M0 80 C80 10 240 10 320 80" fill="none" stroke="#071133" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- lower eyelid -->
+    <path d="M320 80 C240 150 80 150 0 80" fill="none" stroke="#071133" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- iris -->
+    <circle cx="160" cy="80" r="44" fill="#0ea5e9" stroke="#071133" stroke-width="6"/>
+    <!-- pupil -->
+    <circle cx="160" cy="80" r="18" fill="#061226"/>
+    <!-- small highlight -->
+    <circle cx="170" cy="72" r="6" fill="#ffffff" opacity="0.9"/>
+    <!-- subtle rings -->
+    <path d="M100 80 A60 60 0 0 1 220 80" fill="none" stroke="#e6f8ff" stroke-width="2" opacity="0.45"/>
+  </g>
+
+  <!-- Paint pot (left of canvas) -->
+  <g id="paint-pot" transform="translate(60,360) scale(0.9)">
+    <ellipse cx="60" cy="28" rx="58" ry="18" fill="#2b1462" stroke="#2b1462" stroke-width="2"/>
+    <rect x="-12" y="28" width="144" height="44" rx="8" ry="8" fill="#6d28d9" stroke="#2b1462" stroke-width="2"/>
+    <ellipse cx="60" cy="72" rx="58" ry="18" fill="#2b1462" opacity="0.15"/>
+  </g>
+
+  <!-- Brushes (crossed in front, overlapping canvas bottom) -->
+  <g id="brushes" transform="translate(320,420)">
+    <!-- brush handles -->
+    <g transform="rotate(30)">
+      <rect x="-6" y="-6" width="260" height="12" rx="6" ry="6" fill="#0f172a"/>
+      <path d="M254 0 C260 -2 268 2 270 8 L276 28 C277 32 276 36 272 40 C266 46 256 46 250 40 L244 20 C242 14 246 4 254 0 Z" fill="#7c3f00"/>
+    </g>
+    <g transform="rotate(-30)">
+      <rect x="-6" y="-6" width="260" height="12" rx="6" ry="6" fill="#0f172a"/>
+      <path d="M254 0 C260 -2 268 2 270 8 L276 28 C277 32 276 36 272 40 C266 46 256 46 250 40 L244 20 C242 14 246 4 254 0 Z" fill="#7c3f00"/>
+    </g>
+  </g>
+
+  <!-- Small alignment: ensure brushes in front of canvas bottom edge -->
+  <rect x="140" y="420" width="560" height="6" fill="transparent"/>
+
+  <!-- Company text -->
+  <g id="branding" transform="translate(0,520)">
+    <text x="600" y="0" text-anchor="middle" font-family="Inter, Arial, Helvetica, sans-serif" font-size="36" fill="#071133" font-weight="500">
+      Visions In Paint LLC
+    </text>
+  </g>
+
+  <!-- Optional non-visible guide rect (keeps viewBox consistent) -->
+  <rect x="0" y="0" width="1200" height="700" fill="none"/>
+</svg>
