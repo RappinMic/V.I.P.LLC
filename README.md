@@ -1,5 +1,5 @@
 # V.I.P.LLC
-Art Gallery and Apparel Store
+Art experience
 
 ## Description
 V.I.P.LLC is a complete web application combining an art gallery and apparel store. Browse curated contemporary artworks and shop premium apparel designed for art enthusiasts.
