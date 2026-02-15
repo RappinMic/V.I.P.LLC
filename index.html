@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V.I.P. Art Gallery & Apparel Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="logo">
+                <i class="fas fa-palette"></i>
+                V.I.P. Art Gallery
+            </h1>
+            <nav>
+                <ul>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#shop">Shop</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#cart" class="cart-link">
+                        <i class="fas fa-shopping-cart"></i>
+                        Cart <span class="cart-count">0</span>
+                    </a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h2 class="animated-title">Where Art Meets Fashion</h2>
+            <p class="hero-subtitle">Curated Collection of Artistic Apparel</p>
+            <a href="#shop" class="cta-button">Explore Collection</a>
+        </div>
+        <div class="hero-icons">
+            <div class="artist-icon">
+                <i class="fas fa-paint-brush"></i>
+            </div>
+            <div class="artist-icon">
+                <i class="fas fa-palette"></i>
+            </div>
+            <div class="artist-icon">
+                <i class="fas fa-image"></i>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="gallery-section">
+        <div class="container">
+            <h2 class="section-title">Featured Artwork</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item animated-box">
+                    <div class="gallery-image">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <h3>Abstract Cubism</h3>
+                    <p>Geometric forms in harmony</p>
+                </div>
+                <div class="gallery-item animated-box">
+                    <div class="gallery-image">
+                        <i class="fas fa-face-smile"></i>
+                    </div>
+                    <h3>Expressive Portraits</h3>
+                    <p>Emotional depth & color</p>
+                </div>
+                <div class="gallery-item animated-box">
+                    <div class="gallery-image">
+                        <i class="fas fa-shapes"></i>
+                    </div>
+                    <h3>Modern Composition</h3>
+                    <p>Bold shapes & vibrant hues</p>
+                </div>
+                <div class="gallery-item animated-box">
+                    <div class="gallery-image">
+                        <i class="fas fa-circle-half-stroke"></i>
+                    </div>
+                    <h3>Light & Shadow</h3>
+                    <p>Contrast in motion</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="shop" class="shop-section">
+        <div class="container">
+            <h2 class="section-title">Artistic Apparel Collection</h2>
+            <div class="products-grid">
+                <div class="product-card animated-box">
+                    <div class="product-image">
+                        <i class="fas fa-tshirt product-icon"></i>
+                        <div class="product-badge">New</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Cubist Dreams T-Shirt</h3>
+                        <p class="product-description">Inspired by geometric abstraction</p>
+                        <div class="product-price">$39.99</div>
+                        <button class="add-to-cart" data-name="Cubist Dreams T-Shirt" data-price="39.99">
+                            <i class="fas fa-cart-plus"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card animated-box">
+                    <div class="product-image">
+                        <i class="fas fa-tshirt product-icon"></i>
+                        <div class="product-badge">Featured</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Blue Period Hoodie</h3>
+                        <p class="product-description">Melancholic blues & deep tones</p>
+                        <div class="product-price">$59.99</div>
+                        <button class="add-to-cart" data-name="Blue Period Hoodie" data-price="59.99">
+                            <i class="fas fa-cart-plus"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card animated-box">
+                    <div class="product-image">
+                        <i class="fas fa-tshirt product-icon"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Rose Period Sweater</h3>
+                        <p class="product-description">Warm pinks & earth tones</p>
+                        <div class="product-price">$54.99</div>
+                        <button class="add-to-cart" data-name="Rose Period Sweater" data-price="54.99">
+                            <i class="fas fa-cart-plus"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card animated-box">
+                    <div class="product-image">
+                        <i class="fas fa-hat-cowboy product-icon"></i>
+                        <div class="product-badge">Limited</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Abstract Artist Cap</h3>
+                        <p class="product-description">Geometric patterns & bold colors</p>
+                        <div class="product-price">$29.99</div>
+                        <button class="add-to-cart" data-name="Abstract Artist Cap" data-price="29.99">
+                            <i class="fas fa-cart-plus"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card animated-box">
+                    <div class="product-image">
+                        <i class="fas fa-vest product-icon"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Gallery Jacket</h3>
+                        <p class="product-description">Sophisticated museum aesthetic</p>
+                        <div class="product-price">$89.99</div>
+                        <button class="add-to-cart" data-name="Gallery Jacket" data-price="89.99">
+                            <i class="fas fa-cart-plus"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card animated-box">
+                    <div class="product-image">
+                        <i class="fas fa-shoe-prints product-icon"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Artistic Sneakers</h3>
+                        <p class="product-description">Painted canvas design</p>
+                        <div class="product-price">$79.99</div>
+                        <button class="add-to-cart" data-name="Artistic Sneakers" data-price="79.99">
+                            <i class="fas fa-cart-plus"></i> Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="section-title">The Gallery Experience</h2>
+                    <p>Welcome to V.I.P. Art Gallery, where we celebrate the intersection of fine art and contemporary fashion. Our collection draws inspiration from the masters of modern art, bringing cubist forms, vibrant color palettes, and artistic expression to wearable pieces.</p>
+                    <p>Each item in our store is thoughtfully designed to embody the spirit of artistic innovation, with Picasso-inspired aesthetics that blend geometric shapes and harmonious colors.</p>
+                    <div class="artist-icons-row">
+                        <div class="artist-icon-small">
+                            <i class="fas fa-brush"></i>
+                        </div>
+                        <div class="artist-icon-small">
+                            <i class="fas fa-pencil"></i>
+                        </div>
+                        <div class="artist-icon-small">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <div class="artist-icon-small">
+                            <i class="fas fa-paint-roller"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="cart" class="cart-modal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h2>
+                    <i class="fas fa-shopping-bag"></i>
+                    Your Cart
+                </h2>
+                <button class="close-cart">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="cart-items" id="cart-items">
+                <p class="empty-cart">Your cart is empty</p>
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="cart-total">$0.00</span>
+                </div>
+                <button class="checkout-button">
+                    <i class="fas fa-credit-card"></i>
+                    Proceed to Checkout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2026 V.I.P. Art Gallery & Apparel Store. All rights reserved.</p>
+                <div class="social-icons">
+                    <i class="fas fa-palette"></i>
+                    <i class="fas fa-paint-brush"></i>
+                    <i class="fas fa-image"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
