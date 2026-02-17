@@ -1,61 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- assets/images/logo.svg
-     Clean color logo (no embedded company text) for use in headers.
-     Save as: assets/images/logo.svg
--->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" role="img" aria-labelledby="logoTitle logoDesc">
-  <title id="logoTitle">Visions In Paint LLC logo</title>
-  <desc id="logoDesc">An eye painted on a canvas in front of a colorful artist palette with two crossed paintbrushes.</desc>
-
-  <!-- Palette behind the canvas -->
-  <g id="palette" transform="translate(720,160) scale(0.95)">
-    <ellipse cx="0" cy="0" rx="260" ry="160" fill="#f6f7f0" stroke="#e6e8df" stroke-width="5"/>
-    <!-- color wells -->
-    <circle cx="-110" cy="-35" r="24" fill="#2563eb"/> <!-- blue -->
-    <circle cx="-40" cy="-60" r="24" fill="#2dd4bf"/> <!-- teal -->
-    <circle cx="40" cy="-68" r="24" fill="#22c55e"/> <!-- green -->
-    <circle cx="115" cy="-45" r="24" fill="#facc15"/> <!-- yellow -->
-    <circle cx="140" cy="35" r="24" fill="#fb923c"/> <!-- orange -->
-    <circle cx="70" cy="70" r="24" fill="#ef4444"/> <!-- red -->
-    <!-- thumb hole -->
-    <ellipse cx="190" cy="60" rx="40" ry="56" fill="#f6f7f0" stroke="#e6e8df" stroke-width="5"/>
-  </g>
-
-  <!-- Canvas -->
-  <g id="canvas" transform="translate(220,120)">
-    <rect x="0" y="0" width="560" height="360" rx="10" ry="10" fill="#ffffff" stroke="#e9ecef" stroke-width="5"/>
-    <!-- thin inner line for subtle depth -->
-    <rect x="6" y="6" width="548" height="348" rx="8" ry="8" fill="none" stroke="rgba(0,0,0,0.03)" stroke-width="1"/>
-  </g>
-
-  <!-- Eye (centered on canvas) -->
-  <g id="eye" transform="translate(500,300) scale(0.75)">
-    <!-- upper eyelid -->
-    <path d="M-200 40 C-120 -30 120 -30 200 40" fill="none" stroke="#071133" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
-    <!-- lower eyelid -->
-    <path d="M200 40 C120 110 -120 110 -200 40" fill="none" stroke="#071133" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-    <!-- iris -->
-    <circle cx="0" cy="40" r="50" fill="#0ea5e9" stroke="#071133" stroke-width="8"/>
-    <!-- pupil -->
-    <circle cx="0" cy="40" r="20" fill="#061226"/>
-    <!-- highlight -->
-    <circle cx="14" cy="30" r="6" fill="#ffffff" opacity="0.95"/>
-  </g>
-
-  <!-- Crossed brushes in front of canvas bottom -->
-  <g id="brushes" transform="translate(420,420)">
-    <!-- right-lean brush -->
-    <g transform="rotate(-25)">
-      <rect x="-10" y="-8" width="300" height="16" rx="8" ry="8" fill="#0f172a"/>
-      <path d="M280 0 C286 -3 294 3 296 10 L304 34 C305 38 304 42 300 46 C294 52 284 52 278 46 L270 26 C268 18 272 8 280 0 Z" fill="#7c3f00"/>
-    </g>
-    <!-- left-lean brush -->
-    <g transform="rotate(25)">
-      <rect x="-10" y="-8" width="300" height="16" rx="8" ry="8" fill="#0f172a"/>
-      <path d="M280 0 C286 -3 294 3 296 10 L304 34 C305 38 304 42 300 46 C294 52 284 52 278 46 L270 26 C268 18 272 8 280 0 Z" fill="#7c3f00"/>
-    </g>
-  </g>
-
-  <!-- invisible spacer for consistent bounding box -->
-  <rect x="0" y="0" width="1200" height="600" fill="none"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512">
+  <image
+    width="100%"
+    height="100%"
+    href="data:image/webp;base64,UklGRhYAAABXRUJQVlA4WAoAAAAQAAAADwAADwAAQUxQSFYAAAABAAAAAAAdi1YAAAjNAAA7A..."
+    />
 </svg>
